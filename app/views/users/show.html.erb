@@ -1,0 +1,59 @@
+<% content_for :title, @user.name %>
+
+<h1><%= image_tag('glyphish/111-user.png') %> <%= @user.name %></h1>
+<h2><tt><%= @user.username %></tt></h2>
+
+<%= form_for @user do |f| %>
+
+<%= flash[:message] %>
+
+<% if not @user.enabled %>
+  <p class="errors">Account disabled.
+  <% if @current_user.is?(@user) %>
+    You must set a new password below.
+  <% elsif @current_user.admin?(@user) %>
+    <%= @user.first_name %> must log in and set a new password.
+  <% end %>
+  </p>
+<% end %>
+
+<p>
+<%= image_tag('glyphish/18-envelope.png', :class => 'inline') %>
+<%= link_to @user.username, "mailto:#{@user.mail}" %>
+<% if not @user.mail_aliases.empty? %>
+  &nbsp;a.k.a.&nbsp; <%= @user.mail_aliases.join(', ') %>
+<% end %>
+</p>
+
+<% if @current_user.is?(@user) or @current_user.admin?(@user) %>
+  <p>
+  <%= image_tag('glyphish/40-inbox.png', :class => 'inline', :style => 'padding: 0 3px') %>
+  <%= @user.mail_forward %>
+  <%= link_to 'change forwarding address', edit_directory_user_mail_path(@user), :class => :action %>
+  </p>
+<% end %>
+
+<% if @current_user.is?(@user) or @current_user.admin?(@user) %>
+  <p>
+  <%= image_tag('glyphish/30-key.png', :class => 'inline', :style => 'padding: 0 7px') %>
+  <% if @current_user.is?(@user) %>
+    <%= link_to 'change my password', edit_directory_user_password_path(@user), :class => :action %>
+  <% else %>
+    <%= link_to 'reset password', edit_directory_user_password_path(@user), :class => :action %>
+  <% end %>
+  </p>
+<% end %>
+
+<ul>
+  <li class="section">
+  <%= image_tag('glyphish/112-group.png') %> In <%= pluralize @user.groups.size, 'group' %>
+  <% if @current_user.admin?(@user) %>
+    <%= link_to 'change memberships', edit_directory_user_memberships_path(@user), :class => :action %>
+  <% end %>
+  </li>
+  <% @user.groups.sort_by(&:name).each do |group| %>
+  <li><%= link_to group.name, group %></li>
+  <% end %>
+</ul>
+
+<% end %>

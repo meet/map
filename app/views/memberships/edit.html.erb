@@ -1,0 +1,10 @@
+<% content_for :title, @user.name %>
+
+<h1><%= image_tag('glyphish/112-group.png') %> Groups for <%= @user.name %></h1>
+<h2><tt><%= @user.username %></tt></h2>
+
+<%= form_for @user, :url => directory_user_memberships_path do |f| %>
+
+Not implemented yet.
+
+<% end %>

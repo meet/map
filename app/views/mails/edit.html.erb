@@ -1,0 +1,22 @@
+<% content_for :title, @user.name %>
+
+<h1><%= image_tag('glyphish/40-inbox.png') %> Mail forwarding for <%= @user.name %></h1>
+<h2><tt><%= @user.username %></tt></h2>
+
+<%= form_for [ @user, @mail ], :url => directory_user_mail_path, :html => { :method => :put } do |f| %>
+
+<% if not @mail.errors.empty? %>
+<p class="errors">
+<% @mail.errors.each do |key, error| %>
+<%= MailForward.human_attribute_name(key) %> <%= error %><br/>
+<% end %>
+</p>
+<% end %>
+
+<div>
+<%= f.email_field :mail %>
+</div>
+
+<%= f.submit :value => 'Update forwarding address' %>
+
+<% end %>

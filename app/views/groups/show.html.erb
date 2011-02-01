@@ -1,0 +1,17 @@
+<% content_for :title, @group.name %>
+
+<h1><%= image_tag('glyphish/112-group.png') %> <%= @group.name %></h1>
+<h2><tt><%= @group.groupname %></tt></h2>
+
+<!-- BUG: show email address and aliases here -->
+
+<%= simple_format @group.long_description %>
+
+<ul>
+  <li class="section">
+  <%= image_tag('glyphish/111-user.png') %> <%= pluralize @group.members.size, 'member' %>
+  </li>
+  <% @group.members.sort_by { |u| [ u.class.to_s, u.name ] } .each do |user| %>
+  <li><%= link_to user.name, user %></li>
+  <% end %>
+</ul>

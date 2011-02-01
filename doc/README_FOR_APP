@@ -1,0 +1,35 @@
+== Map
+
+Manage Accounts & Permissions
+
+
+== Development
+
+Assumes LDAP connection on port 3389.
+
+
+== Deployment
+
+Add an initializer for the LDAP directory:
+
+  Directory.connect_with :base => ...
+  Directory.connect_with :auth => {
+    :method => :simple,
+    :username => ...,
+    :password => ...
+  }
+
+Add an initializer for ActionMailer:
+
+  Map::Application.config.action_mailer.default_url_options = {
+    :protocol => 'https',
+    :host => ...
+  }
+  ActionMailer::Base.default(
+    :from => 'no-reply@...',
+    :reply_to => 'admin@...'
+  )
+
+Add an initializer for the session secret token:
+
+  Map::Application.config.secret_token = ...

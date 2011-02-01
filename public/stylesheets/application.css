@@ -1,0 +1,113 @@
+body {
+  font-family: 'IM Fell Great Primer', serif;
+  margin: 0.75in;
+  background: #eee;
+  color: #333;
+  height: 100%;
+}
+
+tt { font-family: 'Inconsolata'; }
+
+ul { list-style-type: none; padding: 0; }
+
+a { text-decoration:none; }
+
+a:link { color: #338; }
+a:visited { color: #338; }
+a:hover { color: #33d; }
+a:active { color: #33f; }
+
+a.action {
+  font-style: italic;
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+a img {
+  border: none;
+}
+
+#container {
+  position: relative;
+  background: #fff;
+  max-width: 10in;
+  margin: auto;
+}
+
+#border {
+  position: absolute;
+  border: 1px solid #ddd;
+  background: #fff;
+  top: -0.25in;
+  left: -0.25in;
+  right: -0.25in;
+  bottom: -1in;
+  -webkit-transform: rotate(0.5deg);
+  -moz-transform: rotate(0.5deg);
+  transform: rotate(0.5deg);
+}
+
+#navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#navigation a {
+  margin-left: 0.1in;
+}
+
+#content {
+  position: relative;
+}
+
+li.section {
+  margin-top: 1em;
+  margin-bottom: 0.25em;
+}
+
+li img, img.inline {
+  height: 14px;
+}
+
+form.inset {
+  margin: 2em;
+  padding: 1em 2em;
+}
+
+form div {
+  margin-bottom: 1em;
+}
+
+label.fallback {
+  display: none;
+}
+
+input {
+  font-family: 'IM Fell Great Primer', serif;
+  font-size: larger;
+}
+
+.field_with_errors { display: inline; }
+.field_with_errors label { color: #633; }
+.field_with_errors input::-webkit-input-placeholder { color: #966; }
+
+.success { background: #ded; }
+.errors { background: #fdd; }
+.success, .errors {
+  background-image: -webkit-gradient(linear, 100% 0%, 0% 100%,
+      from(transparent),
+      color-stop(0.2, transparent),
+      color-stop(0.2, #fff),
+      color-stop(0.4, #fff),
+      color-stop(0.4, transparent),
+      color-stop(0.7, transparent),
+      color-stop(0.7, #fff),
+      color-stop(0.9, #fff),
+      color-stop(0.9, transparent),
+      to(transparent));
+  -webkit-background-size: 40px 40px;
+  padding: 0.5em;
+  margin: 1em;
+  width: 50%;
+}

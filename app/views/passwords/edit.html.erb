@@ -1,0 +1,31 @@
+<% content_for :title, @user.name %>
+
+<h1><%= image_tag('glyphish/30-key.png') %> Password for <%= @user.name %></h1>
+<h2><tt><%= @user.username %></tt></h2>
+
+<%= form_for [ @user, @password ], :url => directory_user_password_path, :html => { :method => :put } do |f| %>
+
+<% if not @password.errors.empty? %>
+<p class="errors">
+<% @password.errors.each do |key, error| %>
+<%= Password.human_attribute_name(key) %> <%= error %><br/>
+<% end %>
+</p>
+<% end %>
+
+<div>
+<%= f.label :current_password, :class => 'fallback' %>
+<%= f.password_field :current_password, :value => '', :placeholder => 'Current password' %>
+</div>
+<div>
+<%= f.label :new_password, :class => 'fallback' %>
+<%= f.password_field :new_password, :value => '', :placeholder => 'New password' %>
+</div>
+<div>
+<%= f.label :new_password_confirmation, :class => 'fallback' %>
+<%= f.password_field :new_password_confirmation, :value => '', :placeholder => 'New password confirmation' %>
+</div>
+
+<%= f.submit :value => 'Update password' %>
+
+<% end %>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map<%= content_for?(:title) ? ' - ' : '' %><%= yield :title %></title>
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:regular,italic" rel="stylesheet" type="text/css" >
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= yield :head %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<div id="container">
+<div id="border"></div>
+<div id="content">
+<div id="navigation">
+<%= link_to image_tag('glyphish/103-map.png'), '/', :title => 'Map' %>
+<%= link_to image_tag('glyphish/123-id-card.png'), @current_user, :title => @current_user.name %>
+</div>
+<%= yield %>
+</div>
+</div>
+
+</body>
+</html>

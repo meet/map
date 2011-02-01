@@ -1,0 +1,9 @@
+<% content_for :title, 'Users' %>
+
+<h1><%= image_tag('glyphish/111-user.png') %> <%= pluralize @users.count, 'User' %></h1>
+
+<ul>
+<% @users.sort_by(&:last_name).each do |user| %>
+  <li><%= link_to user.name, user %> &nbsp; <tt style="color:#ddd"><%= user.username %></tt></li>
+<% end %>
+</ul>

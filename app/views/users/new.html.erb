@@ -1,0 +1,20 @@
+<% content_for :title, 'New user' %>
+
+<h1>Request a new user account</h1>
+
+<%= form_for @user do |f| %>
+  
+  <div>
+  <%= image_tag('glyphish/111-user.png') %>
+  <%= f.text_field :first_name, :placeholder => 'First name', :size => 15 %>
+  <%= f.text_field :last_name, :placeholder => 'Last name', :size => 20 %>
+  </div>
+  
+  <div>
+  <%= image_tag('glyphish/18-envelope.png') %>
+  <%= f.email_field :mail_forward, :placeholder => 'Forwarding email address' %>
+  </div>
+  
+  Not implemented yet.
+  
+<% end %>

@@ -1,0 +1,15 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'search' %>
+<% end %>
+
+<h1>Map</h1>
+<h2>Managing Accounts &amp; Permissions</h2>
+
+<form class="inset">
+<p>Search for users or groups:</p>
+<input id="search" type="search" autofocus />
+<ul id="results">
+</ul>
+</form>
+
+<%= link_to 'Request a new user account', new_directory_user_path %>

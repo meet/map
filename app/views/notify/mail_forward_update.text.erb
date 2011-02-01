@@ -1,0 +1,11 @@
+<%= @user.first_name %>-
+
+Your MEET email forwarding address has been updated.
+
+  New address: <%= @user.mail_forward %>
+
+<% if not @user.is?(@updater) %>
+This change was made by <%= @updater.name %>.
+
+<% end %>
+If you think this was a mistake, please email: <%= message.reply_to %>

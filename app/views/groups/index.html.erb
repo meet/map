@@ -1,0 +1,9 @@
+<% content_for :title, 'Groups' %>
+
+<h1><%= image_tag('glyphish/112-group.png') %> <%= pluralize @groups.count, 'Group' %></h1>
+
+<ul>
+<% @groups.sort_by(&:name).each do |group| %>
+  <li><%= link_to group.name, group %></li>
+<% end %>
+</ul>
