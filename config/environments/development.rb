@@ -40,5 +40,5 @@ Map::Application.configure do
   config.middleware.use Development
   
   # Don't use secure session cookie
-  Map::Application.config.session_store :cookie_store, :key => '_map_session', :secure => false
+  config.session_store :cookie_store, :key => '_map_session', :secure => false
 end

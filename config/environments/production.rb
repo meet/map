@@ -48,5 +48,5 @@ Map::Application.configure do
   config.active_support.deprecation = :notify
   
   # Use secure session cookie
-  Map::Application.config.session_store :cookie_store, :key => '_map_session', :secure => true
+  config.session_store :cookie_store, :key => '_map_session', :secure => true
 end
