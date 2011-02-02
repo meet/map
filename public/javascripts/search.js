@@ -34,7 +34,7 @@ document.observe('dom:loaded', function() {
           ).insert(' '+groups.length+' group'+(groups.length == 1 ? '' : 's')));
           
           groups.each(function (group) {
-            results.insert(new Element('li').update(new Element('a', { href: '/groups/' + group.name }).update(group.name)));
+            results.insert(new Element('li').update(new Element('a', { href: '/groups/' + group.groupname }).update(group.name)));
           });
         }
       }
