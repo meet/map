@@ -12,21 +12,19 @@ class ApplicationController < ActionController::Base
   private
     
     def authenticate
-      if @current_user = Directory::User.find(session[:username])
-        return true
-      end
+      return if @current_user = Directory::User.find(session[:username])
       
       authorize_with_open_id do |result, identity_url, attributes|
         reset_session
         if result.successful?
           session[:username] = attributes[:username]
-          @current_user = Directory::User.find(session[:username])
-          return true
+          redirect_to request.url
         else
-          render :text => result.message, :status => 403
+          @error = result.message
+          render 'application/error', :status => 403
         end
       end
-      return false
+      render :file => 'public/500', :layout => false, :status => 500 unless performed?
     end
     
     def directory_user
