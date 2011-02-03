@@ -16,7 +16,10 @@
 <div id="content">
 <div id="navigation">
 <%= link_to image_tag('glyphish/103-map.png'), '/', :title => 'Map' %>
+<% if @current_user %>
 <%= link_to image_tag('glyphish/123-id-card.png'), @current_user, :title => @current_user.name %>
+<%= link_to image_tag('glyphish/54-lock.png', :height => 21), '/logout', :title => 'Log out' %>
+<% end %>
 </div>
 <%= yield %>
 </div>

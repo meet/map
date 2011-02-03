@@ -19,7 +19,11 @@ Add an initializer for the LDAP directory:
     :password => ...
   }
 
-Add an initializer for ActionMailer:
+And an initializer for OpenID authorization:
+
+  OpenIdAuthorization.provider = 'https://.../'
+
+And an initializer for ActionMailer:
 
   Map::Application.config.action_mailer.default_url_options = {
     :protocol => 'https',
@@ -30,6 +34,6 @@ Add an initializer for ActionMailer:
     :reply_to => 'admin@...'
   )
 
-Add an initializer for the session secret token:
+And an initializer for the session secret token:
 
   Map::Application.config.secret_token = ...

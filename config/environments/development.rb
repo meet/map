@@ -26,19 +26,6 @@ Map::Application.configure do
   # Assume LDAP is port forwarded
   Directory.connect_with(:port => 3389)
   
-  class Development
-    def initialize(app)
-      minute = Time.now.min.to_s
-      @auth = Rack::Auth::Basic.new(app, "Development") do |user, pass|
-        pass == minute
-      end
-    end
-    def call(env)
-      @auth.call(env)
-    end
-  end
-  config.middleware.use Development
-  
   # Don't use secure session cookie
   config.session_store :cookie_store, :key => '_map_session', :secure => false
 end
