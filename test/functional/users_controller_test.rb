@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   
   test "should get index" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :index
     assert_response :success
     assert_select 'a[href=?]', directory_user_path('ptolemy')
@@ -11,7 +11,7 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   test "should get own page as admin" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :show, :id => 'ptolemy'
     assert_response :success
     assert_select 'h1', 'Claudius Ptolemy'
@@ -23,7 +23,7 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   test "should get own page" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     get :show, :id => 'alidrisi'
     assert_response :success
     assert_select 'h1', 'Abu Abd Allah Muhammad al-Idrisi'
@@ -33,7 +33,7 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   test "should get another user page as admin" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :show, :id => 'alidrisi'
     assert_response :success
     assert_select 'h1', 'Abu Abd Allah Muhammad al-Idrisi'
@@ -44,7 +44,7 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   test "should get another user page" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     get :show, :id => 'ptolemy'
     assert_response :success
     assert_select 'h1', 'Claudius Ptolemy'

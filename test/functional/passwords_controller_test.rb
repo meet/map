@@ -3,34 +3,34 @@ require 'test_helper'
 class PasswordsControllerTest < ActionController::TestCase
   
   test "should get edit page for admin" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :edit, :directory_user_id => 'ptolemy'
     assert_response :success
     assert_template :edit
   end
   
   test "should get edit page" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     get :edit, :directory_user_id => 'alidrisi'
     assert_response :success
     assert_template :edit
   end
   
   test "should get reset page" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :edit, :directory_user_id => 'alidrisi'
     assert_response :success
     assert_template :reset
   end
   
   test "edit should be denied" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     get :edit, :directory_user_id => 'ptolemy'
     assert_response :forbidden
   end
   
   test "should reset password" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     post :create, :directory_user_id => 'alidrisi'
     assert_redirected_to directory_user_path('alidrisi')
     
@@ -48,7 +48,7 @@ class PasswordsControllerTest < ActionController::TestCase
   end
   
   test "reset should be denied" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     post :create, :directory_user_id => 'ptolemy'
     assert_response :forbidden
     
@@ -61,7 +61,7 @@ class PasswordsControllerTest < ActionController::TestCase
   
   test "update should fail with incorrect password" do
     Directory.connection.mock_bind('alidrisi', 'Andalus123')
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     put :update, :directory_user_id => 'alidrisi', :password => {
       :current_password => 'Italy123', :new_password => 'Sicily123', :new_password_confirmation => 'Sicily123' }
     assert_response :success
@@ -73,7 +73,7 @@ class PasswordsControllerTest < ActionController::TestCase
   
   test "update should fail with unacceptable password" do
     Directory.connection.mock_bind('alidrisi', 'Andalus123')
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     put :update, :directory_user_id => 'alidrisi', :password => {
       :current_password => 'Andalus123', :new_password => 'a', :new_password_confirmation => 'a' }
     assert_response :success
@@ -85,7 +85,7 @@ class PasswordsControllerTest < ActionController::TestCase
   
   test "should update password" do
     Directory.connection.mock_bind('alidrisi', 'Andalus123')
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     put :update, :directory_user_id => 'alidrisi', :password => {
       :current_password => 'Andalus123', :new_password => 'Sicily123', :new_password_confirmation => 'Sicily123' }
     assert_redirected_to directory_user_path('alidrisi')

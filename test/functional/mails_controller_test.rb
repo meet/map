@@ -3,34 +3,34 @@ require 'test_helper'
 class MailsControllerTest < ActionController::TestCase
   
   test "should get edit page for admin self" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :edit, :directory_user_id => 'ptolemy'
     assert_response :success
     assert_template :edit
   end
   
   test "should get edit page self" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     get :edit, :directory_user_id => 'alidrisi'
     assert_response :success
     assert_template :edit
   end
   
   test "should get edit page for admin" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     get :edit, :directory_user_id => 'alidrisi'
     assert_response :success
     assert_template :edit
   end
   
   test "edit should be denied" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     get :edit, :directory_user_id => 'ptolemy'
     assert_response :forbidden
   end
   
   test "should update mail by admin" do
-    request.env['REMOTE_USER'] = 'ptolemy'
+    request.session[:username] = 'ptolemy'
     put :update, :directory_user_id => 'alidrisi', :mail_forward => { :mail => 'example@example.com' }
     assert_redirected_to directory_user_path('alidrisi')
     
@@ -46,7 +46,7 @@ class MailsControllerTest < ActionController::TestCase
   end
   
   test "update should be denied" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     put :update, :directory_user_id => 'ptolemy', :mail_forward => { :mail => 'example@example.com' }
     assert_response :forbidden
     
@@ -58,7 +58,7 @@ class MailsControllerTest < ActionController::TestCase
   end
   
   test "update should fail with invalid address" do
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     put :update, :directory_user_id => 'alidrisi', :mail_forward => { :mail => 'new-email' }
     assert_response :success
     assert_template :edit
@@ -71,7 +71,7 @@ class MailsControllerTest < ActionController::TestCase
     alidrisi = Directory::User.find('alidrisi')
     alidrisi.mail_forward = 'old@example.com'
     
-    request.env['REMOTE_USER'] = 'alidrisi'
+    request.session[:username] = 'alidrisi'
     put :update, :directory_user_id => 'alidrisi', :mail_forward => { :mail => 'new@example.com' }
     assert_redirected_to directory_user_path('alidrisi')
     
