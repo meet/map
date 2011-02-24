@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
           render 'application/error', :status => 403
         end
       end
-      render :file => 'public/500', :layout => false, :status => 500 unless performed?
+      raise "Authentication failed but did not render or redirect" unless performed?
     end
     
     def directory_user
