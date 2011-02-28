@@ -12,6 +12,6 @@
   <%= image_tag('glyphish/111-user.png') %> <%= pluralize @group.members.size, 'member' %>
   </li>
   <% @group.members.sort_by { |u| [ u.class.to_s, u.name ] } .each do |user| %>
-  <li><%= link_to user.name, user %></li>
+  <li><%= link_to_if user.class.respond_to?(:model_name), user.name, user %></li>
   <% end %>
 </ul>
