@@ -5,6 +5,10 @@
 
 <%= form_for [ @user, @password ], :url => directory_user_password_path, :html => { :method => :put } do |f| %>
 
+<% if not @gapps_user %>
+<p class="warnings">No Google Apps account. Setting local password only.</p>
+<% end %>
+
 <% if not @password.errors.empty? %>
 <p class="errors">
 <% @password.errors.each do |key, error| %>
@@ -26,6 +30,6 @@
 <%= f.password_field :new_password_confirmation, :value => '', :placeholder => 'New password confirmation' %>
 </div>
 
-<%= f.submit :value => 'Update password' %>
+<%= f.submit :value => 'Update password', :disable_with => 'Updating password...' %>
 
 <% end %>

@@ -97,4 +97,21 @@ class PasswordsControllerTest < ActionController::TestCase
     assert_equal :userpassword, Directory.connection.changes.second.attribute
   end
   
+  test "should update password on Google Apps" do
+    Directory.connection.mock_bind('alidrisi', 'Andalus123')
+    GoogleApps.connection.mock_entry('alidrisi', GoogleApps::User.new(:user_name => 'alidrisi'))
+    
+    request.session[:username] = 'alidrisi'
+    put :update, :directory_user_id => 'alidrisi', :password => {
+      :current_password => 'Andalus123', :new_password => 'Sicily123', :new_password_confirmation => 'Sicily123' }
+    assert_redirected_to directory_user_path('alidrisi')
+    
+    assert_equal :shadowexpire, Directory.connection.changes.first.attribute
+    assert_equal :userpassword, Directory.connection.changes.second.attribute
+    
+    assert_equal 1, GoogleApps.connection.changes.size
+    assert_equal :POST, GoogleApps.connection.changes.first.first
+    assert_match /#{Digest::SHA1.hexdigest('Sicily123')}/, GoogleApps.connection.changes.first.third
+  end
+  
 end

@@ -10,6 +10,11 @@ gem 'open_id_authorization', '0.0.1', :git => 'git://github.com/meet/open_id_aut
 gem 'net-ldap'
 gem 'directory', '0.0.1', :git => 'git://github.com/meet/directory.git'
 
+gem 'oauth'
+gem 'google-apps-provision', '0.0.1', :git => 'git://github.com/meet/google-apps-provision.git'
+
+gem 'google-apps-trollusk', '0.0.1', :git => 'git://github.com/meet/google-apps-trollusk.git'
+
 group :development, :test do
   gem 'ruby-debug'
 end

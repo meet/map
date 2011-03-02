@@ -31,4 +31,9 @@ class ApplicationController < ActionController::Base
       @user = Directory::User.find(params[:directory_user_id])
     end
     
+    def google_apps_user
+      @gapps_user = GoogleApps::User.find(params[:directory_user_id])
+    rescue GoogleApps::GoogleError
+    end
+    
 end

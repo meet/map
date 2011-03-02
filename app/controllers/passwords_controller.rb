@@ -1,6 +1,7 @@
 class PasswordsController < ApplicationController
   
   before_filter :directory_user
+  before_filter :google_apps_user
   
   def edit
     @password = Password.new(@user)
@@ -36,6 +37,12 @@ class PasswordsController < ApplicationController
     if @password.valid?
       @user.enabled = true
       @user.password = @password.new_password
+      
+      if @gapps_user
+        @gapps_user.new_password = @password.new_password
+        @gapps_user.save
+      end
+      
       flash[:message] = render_to_string :partial => 'updated'
       redirect_to @user
     else

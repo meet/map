@@ -21,6 +21,8 @@ class ActiveSupport::TestCase
   def teardown
     Directory.connection.clear_mocks
     Directory.connection.clear_changes
+    GoogleApps.connection.clear_mocks
+    GoogleApps.connection.clear_changes
     ActionMailer::Base.deliveries.clear
   end
   

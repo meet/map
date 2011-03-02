@@ -47,6 +47,9 @@ Map::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
+  # Write changes to Google Apps
+  GoogleApps.backend = GoogleApps::ReadWrite
+  
   # Use secure session cookie
   config.session_store :cookie_store, :key => '_map_session', :secure => true
 end

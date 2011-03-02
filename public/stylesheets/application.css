@@ -93,8 +93,9 @@ input {
 .field_with_errors input::-webkit-input-placeholder { color: #966; }
 
 .success { background: #ded; }
+.warnings { background: #f9f9cc; }
 .errors { background: #fdd; }
-.success, .errors {
+.success, .warnings, .errors {
   background-image: -webkit-gradient(linear, 100% 0%, 0% 100%,
       from(transparent),
       color-stop(0.2, transparent),

@@ -1,6 +1,7 @@
 class MailsController < ApplicationController
   
   before_filter :directory_user
+  before_filter :google_apps_user
   
   def edit
     if @current_user.is?(@user) or @current_user.admin?(@user)
@@ -20,6 +21,7 @@ class MailsController < ApplicationController
     
     if @mail.valid?
       old_mail = @user.mail_forward
+      GoogleApps::Trollusk.connect { |t| t.only(@user.username, @mail.mail) } if @gapps_user
       @user.mail_forward = @mail.mail
       Notify.mail_forward_update(@user, @current_user, old_mail).deliver
       flash[:message] = render_to_string :partial => 'updated'

@@ -35,4 +35,7 @@ Map::Application.configure do
   
   # Use the mock LDAP backend
   Directory.backend = Directory::MockLDAP
+  
+  # Use the mock Google Apps backend
+  GoogleApps.backend = GoogleApps::Mock
 end
