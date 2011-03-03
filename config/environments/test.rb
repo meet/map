@@ -38,4 +38,8 @@ Map::Application.configure do
   
   # Use the mock Google Apps backend
   GoogleApps.backend = GoogleApps::Mock
+  
+  # Use mock Google Apps mail routing
+  GoogleApps::Trollusk.connect_with :mock => true
+  
 end

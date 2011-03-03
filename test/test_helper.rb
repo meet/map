@@ -23,6 +23,7 @@ class ActiveSupport::TestCase
     Directory.connection.clear_changes
     GoogleApps.connection.clear_mocks
     GoogleApps.connection.clear_changes
+    GoogleApps::MockTrollusk.commands.clear
     ActionMailer::Base.deliveries.clear
   end
   

@@ -86,4 +86,19 @@ class MailsControllerTest < ActionController::TestCase
     assert_match /new@example.com/, note.body
   end
   
+  test "should update mail on Google Apps" do
+    alidrisi = Directory::User.find('alidrisi')
+    alidrisi.mail_forward = 'old@example.com'
+    GoogleApps.connection.mock_entry('alidrisi', GoogleApps::User.new(:user_name => 'alidrisi'))
+    
+    request.session[:username] = 'alidrisi'
+    put :update, :directory_user_id => 'alidrisi', :mail_forward => { :mail => 'new@example.com' }
+    assert_redirected_to directory_user_path('alidrisi')
+    
+    alidrisi = Directory::User.find('alidrisi')
+    assert_equal 'new@example.com', alidrisi.mail_forward
+    
+    assert_equal [ 'alidrisi only new@example.com' ], GoogleApps::MockTrollusk.commands
+  end
+  
 end
