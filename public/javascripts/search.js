@@ -1,10 +1,11 @@
 document.observe('dom:loaded', function() {
+  var results = $('results');
   var req;
   
   function search() {
     if (this.getValue().length < 2) {
       req = null;
-      $('results').childElements().each(function (elt) {
+      results.childElements().each(function (elt) {
         elt.remove();
       });
       return;
@@ -15,9 +16,8 @@ document.observe('dom:loaded', function() {
       parameters: { q: this.getValue() },
       onSuccess: function(response) {
         if (req == response.request) {
-          results = $('results')
-          users = response.responseJSON.users
-          groups = response.responseJSON.groups
+          var users = response.responseJSON.users;
+          var groups = response.responseJSON.groups;
           
           results.childElements().each(function (elt) { elt.remove(); });
           
@@ -41,8 +41,17 @@ document.observe('dom:loaded', function() {
     });
   }
   
+  function jump(event) {
+    event.stop();
+    var links = results.select('a');
+    if (links.size() == 1) {
+      window.location = links[0].href;
+    }
+  }
+  
   $('search').on('search', search);
   $('search').on('keyup', search);
+  $('search-form').on('submit', jump);
   
   search.bind($('search'))();
 });
