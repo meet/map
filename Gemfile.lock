@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: git://github.com/meet/google-apps-trollusk.git
-  revision: ccbd1aba445d780ca79170ceac3f22cf2e35e1b6
+  revision: 7fe009f74c6a7928e2f169b4f860b3acc9608073
   specs:
     google-apps-trollusk (0.0.1)
 
