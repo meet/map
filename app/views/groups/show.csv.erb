@@ -1,0 +1,9 @@
+"<%= @group.name %>"
+<%= @group.groupname %>
+Exported,"<%= Time.now %>"
+
+Members,<%= @group.members.size %>
+
+<% @group.members.sort_by { |u| [ u.class.to_s, u.name ] } .each do |user| %>
+<%= user.class.to_s.split('::').last %>,"<%= user.name %>","<%= user.mail %>"
+<% end %>
