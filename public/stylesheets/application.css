@@ -10,6 +10,10 @@ tt { font-family: 'Inconsolata'; }
 
 ul { list-style-type: none; padding: 0; }
 
+table { margin: 1em 0; padding: 0; border-spacing: 0; border-collapse: collapse; border: none; }
+th { font-weight: normal; text-align: left; }
+th, td { margin: 0; padding: 0 1em 0 0; }
+
 a { text-decoration:none; }
 
 a:link { color: #338; }
@@ -65,8 +69,11 @@ li.section {
   margin-top: 1em;
   margin-bottom: 0.25em;
 }
+th {
+  padding-bottom: 0.25em;
+}
 
-li img, img.inline {
+li img, tr img, img.inline {
   height: 14px;
 }
 
@@ -111,4 +118,8 @@ input {
   padding: 0.5em;
   margin: 1em;
   width: 50%;
+}
+
+.secondary {
+  color: #a1a1a1;
 }

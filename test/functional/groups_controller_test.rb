@@ -13,7 +13,7 @@ class GroupsControllerTest < ActionController::TestCase
     get :show, :id => 'admins'
     assert_response :success
     assert_select 'h1', 'Administrators'
-    assert_select 'li a[href=?]', directory_user_path('ptolemy')
+    assert_select 'td a[href=?]', directory_user_path('ptolemy')
   end
   
   test "should show group and email members" do
@@ -21,8 +21,8 @@ class GroupsControllerTest < ActionController::TestCase
     get :show, :id => 'cartographers'
     assert_response :success
     assert_select 'h1', 'Cartographers'
-    assert_select 'li a[href=?]', directory_group_path('admins')
-    assert_select 'li', 'admins@ancient.carto'
+    assert_select 'td a[href=?]', directory_group_path('admins')
+    assert_select 'td', 'admins@ancient.carto'
   end
   
 end
