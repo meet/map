@@ -7,7 +7,13 @@
 
 <%= flash[:message] %>
 
-<% if not @user.enabled %>
+<% if not @user.passworded %>
+  <p class="errors">Account has no password.
+  <% if @current_user.admin?(@user) %>
+    An admin must initiate a password reset.
+  <% end %>
+  </p>
+<% elsif not @user.enabled %>
   <p class="errors">Account disabled.
   <% if @current_user.is?(@user) %>
     You must set a new password below.
