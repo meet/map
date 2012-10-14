@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/meet/google-apps-provision.git
-  revision: 03e47ee5f9dc9c04890d059100c593a575d4c8fc
+  revision: 77fe92bf6af349d684781ea84694907233fe2c98
   specs:
     google-apps-provision (0.0.1)
 

@@ -5,6 +5,8 @@ Map::Application.routes.draw do
   end
   resources :groups, :as => :directory_groups
   
+  resources :google_groups
+  
   get 'logout' => 'application#logout'
   get 'search' => 'welcome#search'
   root :to => 'welcome#index'

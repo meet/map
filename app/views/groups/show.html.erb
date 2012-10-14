@@ -1,6 +1,9 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'google_groups' %>
+<% end %>
 <% content_for :title, @group.name %>
 
-<h1><%= image_tag('glyphish/112-group.png') %> <%= @group.name %></h1>
+<h1 id="shown" data-id="<%= @group.groupname %>"><%= image_tag('glyphish/112-group.png') %> <%= @group.name %></h1>
 <h2><tt><%= @group.groupname %></tt></h2>
 
 <!-- BUG: show email address and aliases here -->
@@ -10,13 +13,16 @@
 <table>
   <tr>
   <th><%= image_tag('glyphish/111-user.png') %> <%= pluralize @group.members.size, 'member' %></th>
+  <th></th>
   </tr>
   <% @group.members.sort_by { |u| [ u.class.to_s, u.name ] } .each do |user| %>
-  <tr>
+  <tr data-mail="<%= user.mail %>">
   <td><%= link_to_if user.class.respond_to?(:model_name), user.name, user %></td>
+  <td>
   <% if user.respond_to?(:username) %>
-    <td><tt class="secondary"><%= user.to_s if user.class.respond_to?(:model_name) %></tt></td>
+    <tt class="secondary"><%= user.to_s if user.class.respond_to?(:model_name) %></tt>
   <% end %>
+  </td>
   </tr>
   <% end %>
 </table>
