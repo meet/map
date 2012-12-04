@@ -8,8 +8,4 @@ class UsersController < ApplicationController
     @user = Directory::User.find(params[:id])
   end
   
-  def new
-    @user = Directory::User.new(Hash.new([]))
-  end
-  
 end
