@@ -5,9 +5,11 @@ class Password
   extend ActiveModel::Translation
   
   validate do |password|
-    errors.add(:current_password, 'incorrect') unless Directory.new.bind(:method => :simple,
-                                                                         :username => @user.dn,
-                                                                         :password => current_password)
+    if @user.passworded
+      errors.add(:current_password, 'incorrect') unless Directory.new.bind(:method => :simple,
+                                                                           :username => @user.dn,
+                                                                           :password => current_password)
+    end
     errors.add(:new_password_confirmation, 'must match') unless new_password == new_password_confirmation
   end
   validates_presence_of :new_password

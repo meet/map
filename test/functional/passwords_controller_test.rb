@@ -59,6 +59,18 @@ class PasswordsControllerTest < ActionController::TestCase
     assert ActionMailer::Base.deliveries.empty?
   end
   
+  test "update should fail with missing password" do
+    Directory.connection.mock_bind('alidrisi', 'Andalus123')
+    request.session[:username] = 'alidrisi'
+    put :update, :directory_user_id => 'alidrisi', :password => {
+      :new_password => 'Sicily123', :new_password_confirmation => 'Sicily123' }
+    assert_response :success
+    assert_template :edit
+    assert_equal ['incorrect'], assigns(:password).errors[:current_password]
+    
+    assert Directory.connection.changes.empty?
+  end
+  
   test "update should fail with incorrect password" do
     Directory.connection.mock_bind('alidrisi', 'Andalus123')
     request.session[:username] = 'alidrisi'
@@ -83,6 +95,18 @@ class PasswordsControllerTest < ActionController::TestCase
     assert Directory.connection.changes.empty?
   end
   
+  test "should set password" do
+    request.session[:username] = 'ptolemy'
+    put :update, :directory_user_id => 'ptolemy', :password => {
+      :new_password => 'Egypt123', :new_password_confirmation => 'Egypt123' }
+    assert_redirected_to directory_user_path('ptolemy')
+    
+    assert Directory::User.find('ptolemy').enabled
+    assert_equal 2, Directory.connection.changes.size
+    assert_equal :shadowexpire, Directory.connection.changes.first.attribute
+    assert_equal :userpassword, Directory.connection.changes.second.attribute
+  end
+  
   test "should update password" do
     Directory.connection.mock_bind('alidrisi', 'Andalus123')
     request.session[:username] = 'alidrisi'
@@ -90,8 +114,7 @@ class PasswordsControllerTest < ActionController::TestCase
       :current_password => 'Andalus123', :new_password => 'Sicily123', :new_password_confirmation => 'Sicily123' }
     assert_redirected_to directory_user_path('alidrisi')
     
-    alidrisi = Directory::User.find('alidrisi')
-    assert alidrisi.enabled
+    assert Directory::User.find('alidrisi').enabled
     assert_equal 2, Directory.connection.changes.size
     assert_equal :shadowexpire, Directory.connection.changes.first.attribute
     assert_equal :userpassword, Directory.connection.changes.second.attribute

@@ -8,8 +8,12 @@ class ActiveSupport::TestCase
   def setup
     Directory.connect_with :base => 'dc=example,dc=com'
     Directory.connect_with :auth => nil
-    Directory.connection.mock_user(:uid => 'ptolemy', :givenname => 'Claudius', :sn => 'Ptolemy')
-    Directory.connection.mock_user(:uid => 'alidrisi', :givenname => 'Abu Abd Allah Muhammad', :sn => 'al-Idrisi')
+    # Ptolemy: uid and name only; admin
+    Directory.connection.mock_user(:uid => 'ptolemy',
+                                   :givenname => 'Claudius', :sn => 'Ptolemy')
+    # al-Idrisi: password
+    Directory.connection.mock_user(:uid => 'alidrisi', :userpassword => 'Andalus123',
+                                   :givenname => 'Abu Abd Allah Muhammad', :sn => 'al-Idrisi')
     Directory.connection.mock_group(:cn => 'admins',
                                     :description => 'Administrators',
                                     :memberuid => [ 'ptolemy' ])

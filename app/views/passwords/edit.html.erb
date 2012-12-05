@@ -17,10 +17,14 @@
 </p>
 <% end %>
 
+<% if not @user.passworded %>
+<p class="warnings">You must set a password to continue using your account.</p>
+<% else %>
 <div>
 <%= f.label :current_password, :class => 'fallback' %>
 <%= f.password_field :current_password, :value => '', :placeholder => 'Current password' %>
 </div>
+<% end %>
 <div>
 <%= f.label :new_password, :class => 'fallback' %>
 <%= f.password_field :new_password, :value => '', :placeholder => 'New password' %>
