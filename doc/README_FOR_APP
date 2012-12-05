@@ -19,6 +19,21 @@ Add an initializer for the LDAP directory:
     :password => ...
   }
 
+And an initializer for Google Apps:
+
+  GoogleApps.connect_with({
+    :domain => ...,
+    :consumer_secret => ...,
+    :access_token => ...,
+    :access_secret => ...
+  })
+  GoogleApps::Trollusk.connect_with({
+    :domain => ...,
+    ...
+  })
+  GoogleApps::ORG_UNIT_GROUPS = ActiveSupport::OrderedHash.new
+  GoogleApps::ORG_UNIT_GROUPS['...'] = '...'
+
 And an initializer for OpenID authorization:
 
   OpenIdAuthorization.provider = 'https://.../'
