@@ -92,6 +92,9 @@ label {
 label.fallback {
   display: none;
 }
+label.for_disabled {
+  color: #999;
+}
 
 input, select {
   font-family: 'IM Fell Great Primer', serif;

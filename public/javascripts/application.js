@@ -29,4 +29,11 @@ document.observe('dom:loaded', function() {
   $$('label:not(.widelabel)').each(function(elt) {
     elt.setStyle({ width: width+'px' });
   });
+  
+  // Style labels of disabled inputs
+  $$('input[disabled]').each(function(elt) {
+    $$('label[for='+elt.id+']').each(function(label) {
+      label.addClassName('for_disabled');
+    });
+  });
 });
