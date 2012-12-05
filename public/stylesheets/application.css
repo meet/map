@@ -86,11 +86,14 @@ form div {
   margin-bottom: 1em;
 }
 
+label {
+  display: inline-block;
+}
 label.fallback {
   display: none;
 }
 
-input {
+input, select {
   font-family: 'IM Fell Great Primer', serif;
   font-size: larger;
 }
