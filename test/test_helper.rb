@@ -11,9 +11,10 @@ class ActiveSupport::TestCase
     # Ptolemy: uid and name only; admin
     Directory.connection.mock_user(:uid => 'ptolemy',
                                    :givenname => 'Claudius', :sn => 'Ptolemy')
-    # al-Idrisi: password
+    # al-Idrisi: password, mail_forward
     Directory.connection.mock_user(:uid => 'alidrisi', :userpassword => 'Andalus123',
-                                   :givenname => 'Abu Abd Allah Muhammad', :sn => 'al-Idrisi')
+                                   :givenname => 'Abu Abd Allah Muhammad', :sn => 'al-Idrisi',
+                                   :mail => 'alidrisi@ancient.carto')
     Directory.connection.mock_group(:cn => 'admins',
                                     :description => 'Administrators',
                                     :memberuid => [ 'ptolemy' ])

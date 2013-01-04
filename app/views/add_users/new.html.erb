@@ -1,0 +1,40 @@
+<% content_for :title, 'New user' %>
+
+<h1>Add a new user</h1>
+
+<% if ! @pending.empty? %>
+<p class="success">
+<%= pluralize @pending.size, 'new user' %> pending:<br/>
+<% @pending.each do |user| %>
+<%= "#{user.name} <#{user.mail_forward}>" %>
+<% end %>
+</p>
+<% end %>
+
+<%= form_for @user, :url => add_users_path do |f| %>
+
+<%= render :partial => 'errors', :object => @user.save_errors %>
+
+<div>
+<%= image_tag('glyphish/111-user.png', :class => 'inline', :style => 'padding: 0 2px') %>
+<%= f.label :first_name, :class => 'fallback' %>
+<%= f.text_field :first_name, :placeholder => 'First name', :size => 15 %>
+<%= f.label :last_name, :class => 'fallback' %>
+<%= f.text_field :last_name, :placeholder => 'Last name', :size => 20 %>
+</div>
+
+<div>
+<%= image_tag('glyphish/18-envelope.png', :class => 'inline') %>
+<%= f.label :mail_forward, 'Forwarding address', :class => 'fallback' %>
+<%= f.email_field :mail_forward, :placeholder => 'Forwarding email address' %>
+</div>
+
+<div>
+<%= image_tag('glyphish/112-group.png', :class => 'inline') %>
+<%= f.label :primary_group %>
+<%= f.select :primary_group, primary_groups.map {|g| [ g.name, g.groupname ] }, :include_blank => true %>
+</div>
+
+<%= f.submit :value => 'Send account creation email', :disable_with => 'Sending account creation email...' %>
+
+<% end %>

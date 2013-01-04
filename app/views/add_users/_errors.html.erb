@@ -1,0 +1,15 @@
+<% if not errors.empty? %>
+<p class="errors">
+<% errors.each do |key, error| %>
+<%= Directory::NewUser.human_attribute_name(key) %> <%= error %><br/>
+<% end %>
+</p>
+<% elsif not @user.warnings.empty? %>
+<%= hidden_field :directory_new_user, :warned, :value => @user.warnings.keys.join(',') %>
+<p class="warnings">
+Warning: please double-check the following...<br/>
+<% @user.warnings.each do |key, warning| %>
+<%= Directory::NewUser.human_attribute_name(key) %> <%= warning %><br/>
+<% end %>
+</p>
+<% end %>

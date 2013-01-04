@@ -17,4 +17,17 @@ class Notify < ActionMailer::Base
     mail(:to => user.mail, :cc => default_params[:reply_to])
   end
   
+  # Notify a potential user that they can create an account.
+  def user_request(user)
+    @user = user
+    mail(:to => user.mail_forward, :cc => default_params[:reply_to])
+  end
+  
+  # Notify parties that a new account has been created.
+  def user_created(user, requester)
+    @user = user
+    @requester = requester
+    mail(:to => [ user.mail_forward, requester.mail ], :cc => default_params[:reply_to])
+  end
+  
 end

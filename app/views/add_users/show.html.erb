@@ -1,0 +1,45 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'users' %>
+<% end %>
+<% content_for :title, 'New user' %>
+
+<h1>Create a new user account</h1>
+
+<%= form_for @user, :url => add_user_path do |f| %>
+
+<h2>
+<%= image_tag('glyphish/111-user.png', :class => 'inline') %>
+New MEET account for: <%= @user.first_name %> <%= @user.last_name %>
+</h2>
+
+<p>
+<%= image_tag('glyphish/18-envelope.png', :class => 'inline') %>
+Your existing email address: <tt><%= @user.mail_forward %></tt>
+</p>
+
+<p>
+<%= image_tag('glyphish/112-group.png', :class => 'inline') %>
+Primary group: <%= Directory::Group.find(@user.primary_group).name %>
+</p>
+
+<%= render :partial => 'errors', :object => @user.errors %>
+
+<div>
+<b>Please select your username</b>, which will also be your email address <tt>@<%= Directory.connection.base_domain %></tt>.<br/>
+The username must consist of lowercase alphabetic characters.<br/>
+It should be based on your name and easy for others to identify as you.</br>
+<%= f.label :username, :class => 'fallback' %>
+<%= f.text_field :username, :placeholder => 'Username' %>
+</div>
+
+<div>
+<b>Select where to receive your email</b> addressed to <tt><span id="username-preview"><%= @user.username %></span>@<%= Directory.connection.base_domain %></tt>:<br/>
+<%= f.radio_button :mail_inbox, false, :disabled => true %><!-- BUG: fix Trollusk and enable -->
+<%= f.label :mail_inbox, content_tag(:span, 'Deliver email to your existing inbox at ') + content_tag(:tt, @user.mail_forward), :value => false, :class => 'widelabel' %><br/>
+<%= f.radio_button :mail_inbox, true %>
+<%= f.label :mail_inbox, 'Deliver email to a MEET Google Apps inbox', :value => true, :class => 'widelabel' %>
+</div>
+
+<%= f.submit :value => 'Create account', :disable_with => 'Creating account...' %>
+
+<% end %>

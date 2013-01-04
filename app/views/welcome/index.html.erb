@@ -5,9 +5,15 @@
 <h1>Map</h1>
 <h2>Managing Accounts &amp; Permissions</h2>
 
+<%= flash[:message] %>
+
 <form id="search-form" class="inset">
 <p>Search for <%= link_to 'users', directory_users_path %> or <%= link_to 'groups', directory_groups_path %>:</p>
 <input id="search" type="search" autofocus />
 <ul id="results">
 </ul>
 </form>
+
+<% if @current_user.manager? %>
+<%= link_to 'Add a new user', new_add_user_path, :class => :action %>
+<% end %>

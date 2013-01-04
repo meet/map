@@ -1,0 +1,11 @@
+<%= @user.first_name %>-
+
+Welcome to MEET!
+
+To set up your MEET account, please follow the link below:
+
+  <%= add_user_url(@user.to_key) %>
+
+This account request was sent by <%= @user.requester.name %>.
+
+If you think this was a mistake, please email: <%= message.reply_to %>
