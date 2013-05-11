@@ -8,7 +8,7 @@ gem 'open_id_authentication', '0.0.1', :git => 'git://github.com/rails/open_id_a
 gem 'open_id_authorization', '0.0.1', :git => 'git://github.com/meet/open_id_authorization.git'
 
 gem 'net-ldap'
-gem 'directory', '0.0.1', :git => 'git://github.com/meet/directory.git'
+gem 'directory', '0.0.1', :git => 'git://github.com/meet/directory.git', :branch => 'new-users'
 
 gem 'oauth'
 gem 'google-apps-provision', '0.0.1', :git => 'git://github.com/meet/google-apps-provision.git'

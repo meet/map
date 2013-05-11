@@ -1,12 +1,13 @@
 GIT
   remote: git://github.com/meet/directory.git
-  revision: c17b61fcbc270b1e28011f67f59efec9d038390e
+  revision: 7f1173f59ef52021e762e14881b359ab69bbf24f
+  branch: new-users
   specs:
     directory (0.0.1)
 
 GIT
   remote: git://github.com/meet/google-apps-provision.git
-  revision: 77fe92bf6af349d684781ea84694907233fe2c98
+  revision: 5a65cb9e6b3d6f1b887e912416cd91689352cf4b
   specs:
     google-apps-provision (0.0.1)
 
