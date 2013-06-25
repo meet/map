@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/meet/directory.git
-  revision: 7f1173f59ef52021e762e14881b359ab69bbf24f
+  revision: 817574e4644eedf0d0e930834b7ed7ec7378eabe
   branch: new-users
   specs:
     directory (0.0.1)
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/meet/google-apps-trollusk.git
-  revision: 9875f3152a297b9176f788615c130b0a07ec1d20
+  revision: 5170a700b2abfc6e1de837ced50025a09ad61228
   specs:
     google-apps-trollusk (0.0.1)
 

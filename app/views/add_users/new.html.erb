@@ -23,6 +23,17 @@
 <%= f.text_field :last_name, :placeholder => 'Last name', :size => 20 %>
 </div>
 
+<p>
+If you provide a username, the user will be unable to choose their own username.
+Leave blank if you would like the user to select his/her own username.
+</p>
+
+<div>
+<%= image_tag('glyphish/111-user.png', :class => 'inline', :style => 'padding: 0 2px') %>
+<%= f.label :username, :class => 'fallback' %>
+<%= f.text_field :username, :placeholder => 'Username', :size => 15 %>
+</div>
+
 <div>
 <%= image_tag('glyphish/18-envelope.png', :class => 'inline') %>
 <%= f.label :mail_forward, 'Forwarding address', :class => 'fallback' %>

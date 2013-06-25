@@ -29,7 +29,7 @@ Primary group: <%= Directory::Group.find(@user.primary_group).name %>
 The username must consist of lowercase alphabetic characters.<br/>
 It should be based on your name and easy for others to identify as you.</br>
 <%= f.label :username, :class => 'fallback' %>
-<%= f.text_field :username, :placeholder => 'Username' %>
+<%= f.text_field :username, :placeholder => (@user.username or 'Username'), :disabled => (@user.username && !@user.username.empty?) %>
 </div>
 
 <div>
