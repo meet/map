@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/meet/directory.git
-  revision: 955718c68ffcc7f4c5be3d7768653835faeb6741
+  revision: 54bbb61a0ecbc8af752130965015d4b99fb33a9b
   branch: new-users
   specs:
     directory (0.0.1)
