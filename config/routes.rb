@@ -3,7 +3,11 @@ Map::Application.routes.draw do
   resources :users, :as => :directory_users do
     resource :mail, :password, :memberships
   end
-  resources :add_users
+  resources :add_users do
+    member do
+      get 'resend_email'
+    end
+  end
   resources :groups, :as => :directory_groups
   
   resources :google_groups

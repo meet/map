@@ -6,7 +6,8 @@
 <p class="success">
 <%= pluralize @pending.size, 'new user' %> pending:<br/>
 <% @pending.each do |user| %>
-<%= "#{user.name} <#{user.mail_forward}>" %>
+<%= "#{user.name}: <#{user.mail_forward}>" %>&nbsp;<%=link_to "Resend email", :action => "resend_email",:id => user.cn %>
+<br/>
 <% end %>
 </p>
 <% end %>

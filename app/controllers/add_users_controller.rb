@@ -60,6 +60,12 @@ class AddUsersController < ApplicationController
     end
   end
   
+  def resend_email
+    @user = Directory::NewUser.find_and_update(params[:id])
+    Notify.user_request(@user).deliver
+    redirect_to :root
+  end
+
   private
     
     def authenticate_manager
