@@ -1,7 +1,7 @@
 Map::Application.routes.draw do
   
   resources :users, :as => :directory_users do
-    resource :mail, :password, :memberships
+    resource :mail, :password, :memberships, :mail_destination_inbox
   end
   resources :add_users do
     member do

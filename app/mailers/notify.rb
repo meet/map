@@ -8,7 +8,15 @@ class Notify < ActionMailer::Base
     @old = old
     mail(:to => user.mail, :cc => (old ? [ old ] : []) + [ default_params[:reply_to] ])
   end
-  
+
+  # Notify a user that their mail inbox has been changes.
+  def mail_destination_inbox_update(user, updater, mail_forward)
+    @user = user
+    @updater = updater
+    @mail_forward = mail_forward
+    mail(:to => user.mail_forward, :cc => [mail_forward] + [ default_params[:reply_to] ])
+  end
+
   # Notify a user that their password has been reset.
   def password_reset(user, resetter, temporary)
     @user = user

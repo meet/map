@@ -41,6 +41,17 @@
 
 <% if @current_user.is?(@user) or @current_user.admin?(@user) %>
   <p>
+  This user's GMail inbox is&nbsp;<strong>
+  <% if @user.mail_destination_inbox %>
+  <%= "enabled" %>
+  <% else %>
+  <%= "disabled" %>
+  <% end %></strong>. <%= link_to 'change GMail inbox status', edit_directory_user_mail_destination_inbox_path(@user), :class => :action %>
+  </p>
+<% end %>
+
+<% if @current_user.is?(@user) or @current_user.admin?(@user) %>
+  <p>
   <%= image_tag('glyphish/30-key.png', :class => 'inline', :style => 'padding: 0 7px') %>
   <% if @current_user.is?(@user) %>
     <%= link_to 'change my password', edit_directory_user_password_path(@user), :class => :action %>

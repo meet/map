@@ -8,12 +8,14 @@ gem 'open_id_authentication', '0.0.1', :git => 'git://github.com/rails/open_id_a
 gem 'open_id_authorization', '0.0.1', :git => 'git://github.com/meet/open_id_authorization.git'
 
 gem 'net-ldap'
-gem 'directory', '0.0.1', :git => 'git://github.com/meet/directory.git', :branch => 'new-users'
+gem 'directory', '0.0.1', :git => 'git://github.com/meet/directory.git', :branch => 'trollusk'
 
 gem 'oauth'
 gem 'google-apps-provision', '0.0.1', :git => 'git://github.com/meet/google-apps-provision.git'
 
-gem 'google-apps-trollusk', '0.0.1', :git => 'git://github.com/meet/google-apps-trollusk.git'
+gem 'watir-webdriver'
+gem 'headless'
+gem 'google-apps-trollusk', '0.0.1', :git => 'git://github.com/meet/google-apps-trollusk.git', :branch => 'watir-webdriver'
 
 group :development, :test do
   gem 'ruby-debug'

@@ -21,7 +21,7 @@ class MailsController < ApplicationController
     
     if @mail.valid?
       old_mail = @user.mail_forward
-      GoogleApps::Trollusk.connect { |t| t.only(@user.username, @mail.mail) } if @gapps_user
+      GoogleApps::Trollusk.connect { |t| t.only(@user.username, @mail.mail) } if @gapps_user and (not @user.mail_destination_inbox)
       @user.mail_forward = @mail.mail
       Notify.mail_forward_update(@user, @current_user, old_mail).deliver
       flash[:message] = render_to_string :partial => 'updated'

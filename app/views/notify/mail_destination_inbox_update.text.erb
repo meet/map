@@ -1,0 +1,15 @@
+<%= @user.first_name %>-
+
+Your MEET email delivery settings have been updated.
+
+<% if @user.mail_destination_inbox %>
+Mail will now be delivered to your MEET GMail account at https://mail.meet.mit.edu.
+<% else %>
+Mail will now be forwarded to your forwarding address and will no longer be sent to your MEET GMail inbox.
+<% end %>
+
+<% if not @user.is?(@updater) %>
+This change was made by <%= @updater.name %>.
+
+<% end %>
+If you think this was a mistake, please email: <%= message.reply_to %>

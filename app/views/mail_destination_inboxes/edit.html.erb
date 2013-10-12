@@ -1,0 +1,36 @@
+<% content_for :title, @user.name %>
+
+<h1><%= image_tag('glyphish/40-inbox.png') %> Mail forwarding for <%= @user.name %></h1>
+<h2><tt><%= @user.username %></tt></h2>
+
+<%= form_for [ @user, @mail_destination ], :url => directory_user_mail_destination_inbox_path,
+                               :html => { :method => :put,
+                                          :onsubmit => String.new(update_page { |p| p.show('wait') }) } do |f| %>
+
+<% if not @gapps_user %>
+<p class="warnings">No Google Apps account. <b>This update will have no effect.</b></p>
+<% end %>
+
+<% if not @mail_destination.errors.empty? %>
+<p class="errors">
+<% @mail_destination.errors.each do |key, error| %>
+<%= MailDestination.human_attribute_name(key) %> <%= error %><br/>
+<% end %>
+</p>
+<% end %>
+
+<div>
+<%= f.radio_button :mail_destination_inbox, false %>
+<%= f.label :mail_destination_inbox, content_tag(:span, 'Deliver email to your existing inbox at ') + content_tag(:tt, @user.mail_forward), :value => false, :class => 'widelabel' %><br/>
+<%= f.radio_button :mail_destination_inbox, true %>
+<%= f.label :mail_destination_inbox, 'Deliver email to a MEET Google Apps inbox', :value => true, :class => 'widelabel' %>
+</div>
+
+<%= f.submit :value => 'Update forwarding address', :disable_with => 'Updating forwarding address...' %>
+
+<p id="wait" class="warnings" style="display:none">
+The update will take up to a minute.<br/>
+Pretty silly, I know. Please be patient.
+</p>
+
+<% end %>
