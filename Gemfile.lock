@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/meet/google-apps-trollusk.git
-  revision: 9359c70ef8240b86ed219f95b6499a2bae77d075
+  revision: 34cddb5267a01b2d2adaa92a05830e70e5d274d2
   branch: watir-webdriver
   specs:
     google-apps-trollusk (0.0.1)
