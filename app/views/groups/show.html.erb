@@ -1,6 +1,6 @@
-<!-- <% content_for :head do %> -->
-<!-- <%= javascript_include_tag 'google_groups' %> -->
-<!-- <% end %> -->
+<%# content_for :head do %>
+<%# javascript_include_tag 'google_groups' %>
+<%# end %>
 <% content_for :title, @group.name %>
 
 <h1 id="shown" data-id="<%= @group.groupname %>"><%= image_tag('glyphish/112-group.png') %> <%= @group.name %></h1>
