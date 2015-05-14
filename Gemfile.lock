@@ -1,4 +1,20 @@
 GIT
+  remote: git://github.com/meet/directory.git
+  revision: 2896cecaceb2180146202f55371cb3c5052b392d
+  branch: trollusk
+  specs:
+    directory (0.0.1)
+
+GIT
+  remote: git://github.com/meet/google-apps-provision.git
+  revision: a1456801b0d933558788a2b70fc4ae653f468aec
+  specs:
+    google-apps-provision (0.0.2)
+      activesupport
+      google-api-client
+      i18n
+
+GIT
   remote: git://github.com/meet/google-apps-trollusk.git
   revision: 34cddb5267a01b2d2adaa92a05830e70e5d274d2
   branch: watir-webdriver
@@ -16,19 +32,6 @@ GIT
   revision: 8b97cd2e9e3bbe1650ea526b6be3555b159f5ad4
   specs:
     open_id_authentication (0.0.1)
-
-PATH
-  remote: ../directory
-  specs:
-    directory (0.0.1)
-
-PATH
-  remote: ../google-apps-provision
-  specs:
-    google-apps-provision (0.0.2)
-      activesupport
-      google-api-client
-      i18n
 
 GEM
   remote: http://rubygems.org/

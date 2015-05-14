@@ -13,12 +13,12 @@ gem 'open_id_authentication', '0.0.1', :git => 'git://github.com/rails/open_id_a
 gem 'open_id_authorization', '0.0.1', :git => 'git://github.com/meet/open_id_authorization.git'
 
 gem 'net-ldap', '<0.9.0'
-gem 'directory', '0.0.1', :path => '../directory' #:git => 'git://github.com/meet/directory.git', :branch => 'trollusk'
+gem 'directory', '0.0.1', :git => 'git://github.com/meet/directory.git', :branch => 'trollusk'
 
 gem 'oauth'
 gem 'google-api-client'
 
-gem 'google-apps-provision', '0.0.2', :path=> '../google-apps-provision' #:git => 'git://github.com/meet/google-apps-provision.git'
+gem 'google-apps-provision', '0.0.2', :git => 'git://github.com/meet/google-apps-provision.git'
 
 gem 'watir-webdriver'
 gem 'headless', '1.0.1'
