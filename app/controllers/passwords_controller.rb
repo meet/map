@@ -39,7 +39,7 @@ class PasswordsController < ApplicationController
       @user.password = @password.new_password
       
       if @gapps_user
-        @gapps_user.new_password = @password.new_password
+        @gapps_user.password = @password.new_password
         @gapps_user.save
       end
       
